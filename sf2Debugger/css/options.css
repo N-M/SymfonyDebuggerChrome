@@ -7,15 +7,15 @@
 }
 
 body .pure-g [class *="pure-u"] {
-    font-family: 'Oxygen', sans-serif;
+    font-family: sans-serif;
 }
 
 html, button, input, select, textarea {
-    font-family: 'Oxygen', sans-serif;
+    font-family: sans-serif;
 }
 
 body, .body pure-g {
-    font-family: 'Oxygen', sans-serif;
+    font-family: sans-serif;
 }
 
 .header {

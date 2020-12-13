@@ -28,9 +28,11 @@
             window.getConfigurationKey('profilerDestination', function (profilerDestination) {
                 if (token.popup === true || profilerDestination == 'popup') {
                     chrome.windows.create({'url': url, 'type': 'popup'});
-                } else {
-                    chrome.tabs.create({'url': url});
+
+                    return;
                 }
+
+                chrome.tabs.create({'url': url});
             });
         });
     };

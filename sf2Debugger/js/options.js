@@ -1,6 +1,6 @@
 (function () {
 
-    const unCleanDataForForm = function (data) {
+    const unCleanDataForForm = data => {
         if (data == null) {
             return 'null';
         }
