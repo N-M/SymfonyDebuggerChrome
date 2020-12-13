@@ -1,5 +1,6 @@
 (function(){
 
+    const memory = {};
     /**
      * Load URL and put hte page into loading mode
      * @param url
@@ -12,7 +13,7 @@
     const addMemory = function(domain, uri, callback){
         console.debug('remember : '+domain+ ' '+uri);
         memory[domain] = uri ;
-        var textMemory = [];
+        let textMemory = [];
         console.dir(memory);
         _.each(memory,function(item,key){
             textMemory.push(key+'|'+item);
@@ -37,8 +38,8 @@
         return uri ;
     };
     const submitForm = function(e){
-        var d = $('#urlFormChooser').serializeArray();
-        var data = {} ;
+        const d = $('#urlFormChooser').serializeArray();
+        const data = {};
         _.each(d,function(item){
             data[item.name] = item.value ;
         });
@@ -53,15 +54,12 @@
     };
     let listToTry = [];
 
-    var memory = {};
-
-
     const startup = function () {
         console.dir(memory);
         console.dir(listToTry);
-        var anchor = window.location.hash;
-        var list = anchor.replace('#', '').split('&');
-        var queryString = {};
+        const anchor = window.location.hash;
+        const list = anchor.replace('#', '').split('&');
+        const queryString = {};
         _.each(list, function (item) {
             var s = item.split('=');
             queryString[s[0]] = s[1];
@@ -70,7 +68,7 @@
         checkMemory(queryString.domain, queryString.token, queryString.panel);
 
 
-        var listToDisplay = [];
+        const listToDisplay = [];
         _.each(listToTry, function (item) {
             var url = item;
             _.each(queryString, function (qsItem, qsKey) {
@@ -78,11 +76,11 @@
             });
             listToDisplay.push(url);
         });
-        var optionsStirng = '';
+        let optionsString = '';
         _.each(listToDisplay, function (item) {
-            optionsStirng += '<li class="uriItem"> <label><input class="submit" type="radio" name="uri" value="' + item + '" >' + item.replace('*token*', queryString.token) + '</label></li>';
+            optionsString += '<li class="uriItem"> <label><input class="submit" type="radio" name="uri" value="' + item + '" >' + item.replace('*token*', queryString.token) + '</label></li>';
         });
-        $('#urlChooserList').html(optionsStirng);
+        $('#urlChooserList').html(optionsString);
         $('#token').val(queryString.token);
         $('#domain').val(queryString.domain);
         $('input.submit').on('change', submitForm);
@@ -105,7 +103,6 @@
             go('options.html');
         });
     };
-
 
     //Starter
     window.getConfigurationKey('profilerUrlTemplate',function(profilerUrlTemplate){

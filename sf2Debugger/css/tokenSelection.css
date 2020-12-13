@@ -1,8 +1,9 @@
 body {
-    font-family: 'Oxygen', sans-serif;
+    font-family: sans-serif;
     overflow-x: hidden;
     padding:0;
     margin: 5px;
+    font-size: 14px;
 }
 
 html{
@@ -46,6 +47,7 @@ html{
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: -5px;
+    padding: 4px;
 }
 
 .tokenUrl.hoverFix {
@@ -69,9 +71,6 @@ html{
 
 .tokenValue {
     width: 60px;
-}
-
-.tokenType {
 }
 
 .pure-button-xsmall {

@@ -187,11 +187,9 @@
         );
 
     };
-    var setTokens = function (tokens)
-    {
+    var setTokens = tokens => {
         constructList(tokens);
     };
-
 
     chrome.extension.onMessage.addListener(
         function (request, sender, sendResponse)

@@ -1,7 +1,7 @@
 body{
     text-align: center;
     background-color: #f4f4f4;
-    font-family: 'Oxygen', sans-serif;
+    font-family: sans-serif;
 
     -webkit-animation: fadein 500ms; /* Safari and Chrome */
     animation: fadein 500ms;
@@ -101,10 +101,8 @@ body.isloading{
 .urlChooserList .uriItem:hover{
     border-radius: 4px;
     background-color: rgba(161, 227, 4, 0.5);
-    /*background-image:linear-gradient(to left, white, rgba(161, 227, 4, 0.4),rgba(161, 227, 4, 0.4),rgba(161, 227, 4, 0.4));
-    */transition: background-color 200ms ease;
+    transition: background-color 200ms ease;
     -webkit-transition: background-color 200ms ease;
-
 }
 
 

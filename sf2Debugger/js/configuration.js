@@ -1,6 +1,6 @@
 (function () {
 
-    const callConfigurationReload = function () {
+    const callConfigurationReload = () => {
         chrome.extension.sendRequest(
             {
                 method: "reloadConfiguration",
@@ -9,11 +9,11 @@
         );
     };
     /**
-         * Store data into Configuration
-         * @param data
-         * @param callback
-         */
-    const storeConfiguration = function (data, callback) {
+     * Store data into Configuration
+     * @param data
+     * @param callback
+     */
+    const storeConfiguration = (data, callback) => {
         if (data == null) {
             chrome.storage.sync.remove('configuration', function () {
                 callConfigurationReload.apply(this);
@@ -31,13 +31,15 @@
      * Retrieve all configuration data saved in chrome storage
      * @param callback
      */
-    const getConfiguration = function (callback) {
+    const getConfiguration = callback => {
         chrome.storage.sync.get('configuration', function (data) {
             if (typeof data.configuration !== 'undefined') {
                 callback.apply(this, [data.configuration]);
-            } else {
-                callback.apply(this, []);
+
+                return;
             }
+
+            callback.apply(this, []);
         });
     };
     const defaultValues = [
@@ -80,7 +82,7 @@
     ];
 
 
-    const startup = function () {
+    const startup = () => {
         getConfiguration(function (configurations) {
             if (typeof configurations !== 'undefined' && configurations.length <= 0) {
 
@@ -92,7 +94,7 @@
         });
     };
 
-    const getDefaultValue = function (key) {
+    const getDefaultValue = key => {
         let to = null;
         _.each(defaultValues, function (item) {
             if (item.name == key) {
@@ -102,9 +104,8 @@
 
         return to;
     };
-    const getDefaultConfiguration = function () {
-        return defaultValues;
-    };
+
+    const getDefaultConfiguration = () => defaultValues;
 
 
     /**
@@ -112,7 +113,7 @@
      * @param keyName
      * @param callback
      */
-    const getConfigurationKey = function (keyName, callback) {
+    const getConfigurationKey = (keyName, callback) => {
         getConfiguration(function (configurations) {
             let br = false;
             if (configurations && configurations.length >= 1) {
@@ -133,7 +134,7 @@
     };
 
 
-    const extractConfiguration = function (keyName, config) {
+    const extractConfiguration = (keyName, config) => {
         let result = null;
         _.each(config, function (item) {
             if (item.name == keyName) {
@@ -155,9 +156,9 @@
      * @param data
      * @param callback
      */
-    const storeConfigurationKey = function (key, data, callback) {
+    const storeConfigurationKey = (key, data, callback) => {
         getConfiguration(function (config) {
-            var done = false;
+            let done = false;
             _.each(config, function (item, indice) {
                 if (item.name == key) {
                     config[indice].value = data;
@@ -182,7 +183,6 @@
     window.storeConfigurationKey = storeConfigurationKey;
 
     window.extractConfiguration = extractConfiguration;
-
 
     startup();
 })();
